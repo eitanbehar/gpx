@@ -22,14 +22,14 @@ namespace VirtualRoute
 
            //actual distance, read from static device, elliptical track
             tcx.DistanceMeters = 4000;
-            tcx.Calories = 389;
-            tcx.Sport = "Elliptical training";
-
+            tcx.Calories = 389; // TODO - read this from FIT
+            
             int numberOfTrackPoints = tcx.TrackpointList.Count();
             double distPerPoint = (double) (tcx.DistanceMeters / 1000) / numberOfTrackPoints;
 
             tcx.TotalTimeSeconds = (tcx.TrackpointList[numberOfTrackPoints - 1].Time - tcx.TrackpointList[0].Time).TotalSeconds;
 
+            // set starting point
             tcx.TrackpointList[0].LatitudeDegrees = 31.245080;
             tcx.TrackpointList[0].LongitudeDegrees = 34.812100;
 
@@ -42,7 +42,6 @@ namespace VirtualRoute
             
             tcx.Save(tcxFile);
 
-           // Console.ReadKey();
             return;
 
         }
