@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Desktop
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualRoute", "VirtualGPXRoute\VirtualRoute.csproj", "{9EB49DDB-517A-4319-8BEC-613F2237DBC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualRoute", "VirtualRoute\VirtualRoute.csproj", "{9EB49DDB-517A-4319-8BEC-613F2237DBC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
