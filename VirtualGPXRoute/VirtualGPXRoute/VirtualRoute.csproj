@@ -7,8 +7,8 @@
     <ProjectGuid>{9EB49DDB-517A-4319-8BEC-613F2237DBC5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VirtualGPXRoute</RootNamespace>
-    <AssemblyName>VirtualGPXRoute</AssemblyName>
+    <RootNamespace>VirtualRoute</RootNamespace>
+    <AssemblyName>VirtualRoute</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

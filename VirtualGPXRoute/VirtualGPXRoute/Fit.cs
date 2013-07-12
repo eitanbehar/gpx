@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Dynastream.Fit;
 using System.IO; // downloaded from http://www.thisisant.com/resources/fit // also decoder code used from corresponding example
 
-namespace VirtualGPXRoute
+namespace VirtualRoute
 {
     public static class Fit
     {

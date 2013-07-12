@@ -7,7 +7,7 @@ using Dynastream.Fit; // downloaded from http://www.thisisant.com/resources/fit 
 using System.IO;
 using System.Xml.Linq;
 
-namespace VirtualGPXRoute
+namespace VirtualRoute
 {
     class Program
     {
