@@ -76,6 +76,7 @@ namespace Fit2Tcx
                     string recordType = e.mesg.fields[i].Num.ToString();
                     Console.WriteLine("\tField{0} Index{1} (\"{2}\" Field#{4}) Value: {3}", i, 0, fieldName, fieldValue, recordType);
 
+                    
                     if (activityType == "FileId")
                     {
                         switch (fieldName)
