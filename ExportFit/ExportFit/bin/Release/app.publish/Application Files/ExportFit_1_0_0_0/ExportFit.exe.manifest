@@ -4,7 +4,7 @@
   <description asmv2:iconFile="smartmed.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ExportFit" version="1.0.5293.25216" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ExportFit" version="1.0.5293.25396" language="neutral" processorArchitecture="msil" />
     <commandLine file="ExportFit.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -44,13 +44,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExportFit.exe" size="195072">
-      <assemblyIdentity name="ExportFit" version="1.0.5293.25216" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="ExportFit" version="1.0.5293.25396" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>YAFpAOktAyvLfAVx7WEbqag8Lzg=</dsig:DigestValue>
+        <dsig:DigestValue>0DlTb/LJjGnr29I+IfJrifZi2E0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -74,7 +74,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>gKmUQduqO/JyC1xiH+QYpyBPFhM=</dsig:DigestValue>
+        <dsig:DigestValue>hZMVH+r8H4V+X1mghhcb53j6Nig=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

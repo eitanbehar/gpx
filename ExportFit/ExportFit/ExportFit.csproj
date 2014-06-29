@@ -12,10 +12,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
+    <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -23,10 +23,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://github.com/baconao/gpx/tree/master/ExportFit/ExportFit/bin/Release/app.publish/</InstallUrl>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <ExcludeDeploymentUrl>true</ExcludeDeploymentUrl>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
