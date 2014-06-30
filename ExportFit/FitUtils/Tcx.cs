@@ -51,13 +51,13 @@ namespace FitUtils
             for (int i = 0; i < TrackpointList.Count(); i++)
             {
                 TrackpointList[i].LongitudeDegrees = Utils.FitUnitsToDecimalDegrees(TrackpointList[i].LongitudeDegrees);
-                if (TrackpointList[i].LongitudeDegrees > 90)
+                if (TrackpointList[i].LongitudeDegrees > 90 && i > 0)
                 {
                     TrackpointList[i].LongitudeDegrees = TrackpointList[i - 1].LongitudeDegrees;
                 }
 
                 TrackpointList[i].LatitudeDegrees = Utils.FitUnitsToDecimalDegrees(TrackpointList[i].LatitudeDegrees);
-                if (TrackpointList[i].LatitudeDegrees > 90)
+                if (TrackpointList[i].LatitudeDegrees > 90 && i > 0)
                 {
                     TrackpointList[i].LatitudeDegrees = TrackpointList[i - 1].LatitudeDegrees;
                 }
