@@ -14,6 +14,7 @@ namespace Fit2Tcx
         static void Main()
         {
 
+            //string fitFile = @"D:\Batey\Dropbox\2014-06-26-08-06-19.fit";
             string fitFile = @"c:\temp\2014-06-14-07-01-42.fit";
             string tcxFile = Path.Combine(Path.GetDirectoryName(fitFile), Path.GetFileNameWithoutExtension(fitFile) + ".tcx");
 

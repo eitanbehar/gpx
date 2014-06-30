@@ -30,6 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxVirtualRoute = new System.Windows.Forms.GroupBox();
+            this.textBoxLongitude = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxLatitude = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBoxVirtualRoute = new System.Windows.Forms.CheckBox();
             this.textBoxDistance = new System.Windows.Forms.TextBox();
             this.labelDistance = new System.Windows.Forms.Label();
             this.buttonBrowseTcxFilename = new System.Windows.Forms.Button();
@@ -40,12 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.checkBoxVirtualRoute = new System.Windows.Forms.CheckBox();
-            this.groupBoxVirtualRoute = new System.Windows.Forms.GroupBox();
-            this.textBoxLongitude = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxLatitude = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBoxVirtualRoute.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +56,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.groupBoxVirtualRoute);
             this.groupBox1.Controls.Add(this.checkBoxVirtualRoute);
             this.groupBox1.Controls.Add(this.textBoxDistance);
@@ -70,6 +72,72 @@
             this.groupBox1.Size = new System.Drawing.Size(557, 289);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // groupBoxVirtualRoute
+            // 
+            this.groupBoxVirtualRoute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxVirtualRoute.Controls.Add(this.textBoxLongitude);
+            this.groupBoxVirtualRoute.Controls.Add(this.label3);
+            this.groupBoxVirtualRoute.Controls.Add(this.textBoxLatitude);
+            this.groupBoxVirtualRoute.Controls.Add(this.label2);
+            this.groupBoxVirtualRoute.Location = new System.Drawing.Point(10, 189);
+            this.groupBoxVirtualRoute.Name = "groupBoxVirtualRoute";
+            this.groupBoxVirtualRoute.Size = new System.Drawing.Size(529, 79);
+            this.groupBoxVirtualRoute.TabIndex = 14;
+            this.groupBoxVirtualRoute.TabStop = false;
+            this.groupBoxVirtualRoute.Text = "Starting Point (Degrees)";
+            // 
+            // textBoxLongitude
+            // 
+            this.textBoxLongitude.BackColor = System.Drawing.Color.LightYellow;
+            this.textBoxLongitude.Location = new System.Drawing.Point(232, 28);
+            this.textBoxLongitude.Name = "textBoxLongitude";
+            this.textBoxLongitude.Size = new System.Drawing.Size(89, 20);
+            this.textBoxLongitude.TabIndex = 17;
+            this.textBoxLongitude.Text = "34.812100";
+            this.textBoxLongitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(172, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Longitude";
+            // 
+            // textBoxLatitude
+            // 
+            this.textBoxLatitude.BackColor = System.Drawing.Color.LightYellow;
+            this.textBoxLatitude.Location = new System.Drawing.Point(70, 28);
+            this.textBoxLatitude.Name = "textBoxLatitude";
+            this.textBoxLatitude.Size = new System.Drawing.Size(89, 20);
+            this.textBoxLatitude.TabIndex = 15;
+            this.textBoxLatitude.Text = "31.245080";
+            this.textBoxLatitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Latitude";
+            // 
+            // checkBoxVirtualRoute
+            // 
+            this.checkBoxVirtualRoute.AutoSize = true;
+            this.checkBoxVirtualRoute.Checked = true;
+            this.checkBoxVirtualRoute.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxVirtualRoute.Location = new System.Drawing.Point(10, 151);
+            this.checkBoxVirtualRoute.Name = "checkBoxVirtualRoute";
+            this.checkBoxVirtualRoute.Size = new System.Drawing.Size(134, 17);
+            this.checkBoxVirtualRoute.TabIndex = 9;
+            this.checkBoxVirtualRoute.Text = "Generate Virtual Route";
+            this.checkBoxVirtualRoute.UseVisualStyleBackColor = true;
+            this.checkBoxVirtualRoute.CheckedChanged += new System.EventHandler(this.checkBoxVirtualRoute_CheckedChanged);
             // 
             // textBoxDistance
             // 
@@ -100,7 +168,7 @@
             this.buttonBrowseTcxFilename.TabIndex = 6;
             this.buttonBrowseTcxFilename.Text = "...";
             this.buttonBrowseTcxFilename.UseVisualStyleBackColor = true;
-            this.buttonBrowseTcxFilename.Click += new System.EventHandler(this.buttonBrowse_Click);
+            this.buttonBrowseTcxFilename.Click += new System.EventHandler(this.buttonBrowseTcxFilename_Click);
             // 
             // textBoxTcxFilename
             // 
@@ -172,75 +240,19 @@
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 2;
-            this.buttonSave.Text = "Save";
+            this.buttonSave.Text = "Export";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // checkBoxVirtualRoute
+            // label4
             // 
-            this.checkBoxVirtualRoute.AutoSize = true;
-            this.checkBoxVirtualRoute.Checked = true;
-            this.checkBoxVirtualRoute.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxVirtualRoute.Location = new System.Drawing.Point(10, 151);
-            this.checkBoxVirtualRoute.Name = "checkBoxVirtualRoute";
-            this.checkBoxVirtualRoute.Size = new System.Drawing.Size(134, 17);
-            this.checkBoxVirtualRoute.TabIndex = 9;
-            this.checkBoxVirtualRoute.Text = "Generate Virtual Route";
-            this.checkBoxVirtualRoute.UseVisualStyleBackColor = true;
-            this.checkBoxVirtualRoute.CheckedChanged += new System.EventHandler(this.checkBoxVirtualRoute_CheckedChanged);
-            // 
-            // groupBoxVirtualRoute
-            // 
-            this.groupBoxVirtualRoute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxVirtualRoute.Controls.Add(this.textBoxLongitude);
-            this.groupBoxVirtualRoute.Controls.Add(this.label3);
-            this.groupBoxVirtualRoute.Controls.Add(this.textBoxLatitude);
-            this.groupBoxVirtualRoute.Controls.Add(this.label2);
-            this.groupBoxVirtualRoute.Location = new System.Drawing.Point(10, 189);
-            this.groupBoxVirtualRoute.Name = "groupBoxVirtualRoute";
-            this.groupBoxVirtualRoute.Size = new System.Drawing.Size(529, 79);
-            this.groupBoxVirtualRoute.TabIndex = 14;
-            this.groupBoxVirtualRoute.TabStop = false;
-            this.groupBoxVirtualRoute.Text = "Starting Point (Degrees)";
-            // 
-            // textBoxLongitude
-            // 
-            this.textBoxLongitude.BackColor = System.Drawing.Color.LightYellow;
-            this.textBoxLongitude.Location = new System.Drawing.Point(232, 28);
-            this.textBoxLongitude.Name = "textBoxLongitude";
-            this.textBoxLongitude.Size = new System.Drawing.Size(89, 20);
-            this.textBoxLongitude.TabIndex = 17;
-            this.textBoxLongitude.Text = "34.812100";
-            this.textBoxLongitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(172, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 13);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Longitude";
-            // 
-            // textBoxLatitude
-            // 
-            this.textBoxLatitude.BackColor = System.Drawing.Color.LightYellow;
-            this.textBoxLatitude.Location = new System.Drawing.Point(70, 28);
-            this.textBoxLatitude.Name = "textBoxLatitude";
-            this.textBoxLatitude.Size = new System.Drawing.Size(89, 20);
-            this.textBoxLatitude.TabIndex = 15;
-            this.textBoxLatitude.Text = "31.245080";
-            this.textBoxLatitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Latitude";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label4.Location = new System.Drawing.Point(190, 112);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(218, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "* will be overwritten in value found on FIT file";
             // 
             // MainForm
             // 
@@ -282,6 +294,7 @@
         private System.Windows.Forms.TextBox textBoxLatitude;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxVirtualRoute;
+        private System.Windows.Forms.Label label4;
     }
 }
 

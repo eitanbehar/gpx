@@ -32,6 +32,8 @@ namespace FitUtils
             mesgBroadcaster.FileIdMesgEvent += new MesgEventHandler(OnFileIDMesg);
             mesgBroadcaster.UserProfileMesgEvent += new MesgEventHandler(OnUserProfileMesg);
 
+            mesgBroadcaster.SessionMesgEvent += new MesgEventHandler(OnSessionMesgEvent); 
+           
             bool status = decodeDemo.IsFIT(fitSource);
             status &= decodeDemo.CheckIntegrity(fitSource);
             // Process the file
@@ -58,6 +60,19 @@ namespace FitUtils
         static void OnMesgDefn(object sender, MesgDefinitionEventArgs e)
         {
             Console.WriteLine("OnMesgDef: Received Defn for local message #{0}, it has {1} fields", e.mesgDef.LocalMesgNum, e.mesgDef.NumFields);
+        }
+
+        private static void OnSessionMesgEvent(object sender, MesgEventArgs e)
+        {
+            SessionMesg session = (SessionMesg)e.mesg;
+            if (session.GetTotalCalories() < ushort.MaxValue)
+            {
+                tcx.Calories = (int)session.GetTotalCalories();
+            }
+            if (session.GetTotalDistance() < 1E6)
+            {
+                tcx.DistanceMeters = (double)session.GetTotalDistance();
+            }
         }
 
         static void OnMesg(object sender, MesgEventArgs e)

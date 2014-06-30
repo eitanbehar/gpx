@@ -12,6 +12,8 @@ namespace Fit2Tcx
     {
         internal static Tcx tcx = new Tcx();
 
+        static List<string> activityTypes = new List<string>();
+
         internal static Tcx ReadFitFileIntoTcxObject(string fitFile)
         {
             // Attempt to open .FIT file
@@ -19,12 +21,14 @@ namespace Fit2Tcx
             Console.WriteLine("Opening {0}", fitFile);
 
             Decode decodeDemo = new Decode();
+
             MesgBroadcaster mesgBroadcaster = new MesgBroadcaster();
 
             // Connect the Broadcaster to our event (message) source (in this case the Decoder)
             decodeDemo.MesgEvent += mesgBroadcaster.OnMesg;
             decodeDemo.MesgDefinitionEvent += mesgBroadcaster.OnMesgDefinition;
 
+           
             // Subscribe to message events of interest by connecting to the Broadcaster
             mesgBroadcaster.MesgEvent += new MesgEventHandler(OnMesg);
             mesgBroadcaster.MesgDefinitionEvent += new MesgDefinitionEventHandler(OnMesgDefn);
@@ -32,6 +36,12 @@ namespace Fit2Tcx
             mesgBroadcaster.FileIdMesgEvent += new MesgEventHandler(OnFileIDMesg);
             mesgBroadcaster.UserProfileMesgEvent += new MesgEventHandler(OnUserProfileMesg);
 
+            mesgBroadcaster.TotalsMesgEvent += new MesgEventHandler(OnTotals);
+
+            mesgBroadcaster.WorkoutMesgEvent += new MesgEventHandler(OnWorkoutMesgEvent);
+
+            mesgBroadcaster.SessionMesgEvent += new MesgEventHandler(OnSessionMesgEvent); 
+            
             bool status = decodeDemo.IsFIT(fitSource);
             status &= decodeDemo.CheckIntegrity(fitSource);
             // Process the file
@@ -51,6 +61,26 @@ namespace Fit2Tcx
             fitSource.Close();
 
             return tcx;
+        }
+
+        private static void OnSessionMesgEvent(object sender, MesgEventArgs e)
+        {
+            SessionMesg session = (SessionMesg)e.mesg;
+            if (session.GetTotalCalories() < ushort.MaxValue)
+            {
+                tcx.Calories = (int)session.GetTotalCalories();                
+            }
+
+            if (session.GetTotalDistance() < 1E6)
+            {
+                tcx.DistanceMeters = (double)session.GetTotalDistance();                
+            }
+            
+        }
+
+        private static void OnWorkoutMesgEvent(object sender, MesgEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #region Message Handlers
@@ -76,7 +106,9 @@ namespace Fit2Tcx
                     string recordType = e.mesg.fields[i].Num.ToString();
                     Console.WriteLine("\tField{0} Index{1} (\"{2}\" Field#{4}) Value: {3}", i, 0, fieldName, fieldValue, recordType);
 
-                    
+                    if (!activityTypes.Contains(activityType))
+                        activityTypes.Add(activityType);
+
                     if (activityType == "FileId")
                     {
                         switch (fieldName)
@@ -124,6 +156,12 @@ namespace Fit2Tcx
             {
                 tcx.TrackpointList.Add(tp);
             }
+        }
+
+        static void OnTotals(object sender, MesgEventArgs e)
+        {
+            TotalsMesg myTotalId = (TotalsMesg)e.mesg;
+            tcx.Calories = (int)myTotalId.GetCalories();
         }
 
         static void OnFileIDMesg(object sender, MesgEventArgs e)

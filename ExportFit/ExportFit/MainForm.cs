@@ -61,6 +61,25 @@ namespace ExportFit
             }            
 
             tcx.Save(tcxFile);
+
+            MessageBox.Show("Completed");
+        }
+
+        private void buttonBrowseTcxFilename_Click(object sender, EventArgs e)
+        {
+
+            SaveFileDialog fileDialog = new SaveFileDialog();
+
+            Button bt = (Button)sender;
+            GroupBox currentGroupBox = (GroupBox)bt.Parent;
+            TextBox txtB = (TextBox)currentGroupBox.Controls[bt.Name.Replace("buttonBrowse", "textBox")];
+            fileDialog.InitialDirectory = txtB.Text;
+            if (fileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            txtB.Text = fileDialog.FileName;
         }
     }
 }
