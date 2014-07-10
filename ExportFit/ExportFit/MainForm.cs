@@ -51,7 +51,11 @@ namespace ExportFit
             string tcxFile = textBoxTcxFilename.Text;
 
             Tcx tcx = Fit.ReadFitFileIntoTcxObject(fitFile);
-            tcx.DistanceMeters = double.Parse(textBoxDistance.Text);
+
+            if (checkBoxDistance.Checked)
+            {
+                tcx.DistanceMeters = double.Parse(textBoxDistance.Text);
+            }            
 
             tcx.AdjustPoints();
 
