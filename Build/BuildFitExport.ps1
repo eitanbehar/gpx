@@ -6,11 +6,21 @@ $BaseFolder = 'c:\personal\gpx'
 
 $msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.EXE"
 
+$buildNumber = '13'
+
+$newExeVersion = '1.0.' + $buildNumber + '.0'
+$newExeVersionFolder = '1_0_' + $buildNumber + '_0'
+
+$ProjectXml = [xml](Get-Content "$BaseFolder\ExportFit\ExportFit\Project.targets")
+$ns = new-object Xml.XmlNamespaceManager $ProjectXml.NameTable
+$ns.AddNamespace('msb', 'http://schemas.microsoft.com/developer/msbuild/2003')
+$AppVersion = $ProjectXml.SelectSingleNode("//msb:Project/msb:PropertyGroup/msb:ApplicationVersion", $ns)
+$AppVersion.InnerText = $newExeVersion
+$TargetPath = Resolve-Path "$BaseFolder\ExportFit\ExportFit\Project.targets"
+$ProjectXml.Save($TargetPath)
+
 Invoke-Expression "$msbuild $BaseFolder\ExportFit\ExportFit.sln /p:Configuration=Release /p:Platform='Any CPU' /t:clean /v:quiet /nologo"
 Invoke-Expression "$msbuild $BaseFolder\ExportFit\ExportFit.sln /p:Configuration=Release /p:Platform='Any CPU' /t:rebuild /v:quiet /nologo"
-
-$newExeVersion = '1.0.12.0'
-$newExeVersionFolder = '1_0_12_0'
 
 Invoke-Expression "$msbuild $BaseFolder\ExportFit\ExportFit\ExportFit.csproj /p:Configuration=Release /p:Platform=AnyCPU /t:publish /v:quiet /nologo"
 

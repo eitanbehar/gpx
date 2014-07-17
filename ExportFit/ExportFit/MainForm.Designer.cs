@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxDistance = new System.Windows.Forms.CheckBox();
             this.groupBoxVirtualRoute = new System.Windows.Forms.GroupBox();
             this.textBoxLongitude = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.checkBoxDistance = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxVirtualRoute.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +70,18 @@
             this.groupBox1.Size = new System.Drawing.Size(557, 289);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // checkBoxDistance
+            // 
+            this.checkBoxDistance.AutoSize = true;
+            this.checkBoxDistance.Checked = true;
+            this.checkBoxDistance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxDistance.Location = new System.Drawing.Point(10, 108);
+            this.checkBoxDistance.Name = "checkBoxDistance";
+            this.checkBoxDistance.Size = new System.Drawing.Size(104, 17);
+            this.checkBoxDistance.TabIndex = 15;
+            this.checkBoxDistance.Text = "Set Distance (m)";
+            this.checkBoxDistance.UseVisualStyleBackColor = true;
             // 
             // groupBoxVirtualRoute
             // 
@@ -199,6 +211,7 @@
             this.textBoxFitFilename.Name = "textBoxFitFilename";
             this.textBoxFitFilename.Size = new System.Drawing.Size(421, 20);
             this.textBoxFitFilename.TabIndex = 1;
+            this.textBoxFitFilename.TextChanged += new System.EventHandler(this.textBoxFitFilename_TextChanged);
             // 
             // label1
             // 
@@ -232,18 +245,6 @@
             this.buttonSave.Text = "Export";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // checkBoxDistance
-            // 
-            this.checkBoxDistance.AutoSize = true;
-            this.checkBoxDistance.Checked = true;
-            this.checkBoxDistance.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxDistance.Location = new System.Drawing.Point(10, 108);
-            this.checkBoxDistance.Name = "checkBoxDistance";
-            this.checkBoxDistance.Size = new System.Drawing.Size(104, 17);
-            this.checkBoxDistance.TabIndex = 15;
-            this.checkBoxDistance.Text = "Set Distance (m)";
-            this.checkBoxDistance.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

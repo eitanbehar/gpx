@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -26,11 +27,12 @@ namespace ExportFit
         {
 
             OpenFileDialog fileDialog = new OpenFileDialog();
-            
+
             Button bt = (Button)sender;
             GroupBox currentGroupBox = (GroupBox)bt.Parent;
             TextBox txtB = (TextBox)currentGroupBox.Controls[bt.Name.Replace("buttonBrowse", "textBox")];
             fileDialog.CheckPathExists = true;
+            fileDialog.Filter = "(Fit Files *.fit) | *.fit";
             fileDialog.InitialDirectory = txtB.Text;
             if (fileDialog.ShowDialog() != DialogResult.OK)
             {
@@ -55,14 +57,14 @@ namespace ExportFit
             if (checkBoxDistance.Checked)
             {
                 tcx.DistanceMeters = double.Parse(textBoxDistance.Text);
-            }            
+            }
 
             tcx.AdjustPoints();
 
             if (checkBoxVirtualRoute.Checked)
             {
                 tcx.CreateVirtualRoute(double.Parse(textBoxLatitude.Text), double.Parse(textBoxLongitude.Text));
-            }            
+            }
 
             tcx.Save(tcxFile);
 
@@ -78,12 +80,36 @@ namespace ExportFit
             GroupBox currentGroupBox = (GroupBox)bt.Parent;
             TextBox txtB = (TextBox)currentGroupBox.Controls[bt.Name.Replace("buttonBrowse", "textBox")];
             fileDialog.InitialDirectory = txtB.Text;
+            fileDialog.Filter = "(Tcx Files *.tcx) | *.tcx";
             if (fileDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
 
             txtB.Text = fileDialog.FileName;
+        }
+
+        private void textBoxFitFilename_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(textBoxTcxFilename.Text))
+                    return;
+
+                string fitFileName = textBoxFitFilename.Text;
+
+                if (String.IsNullOrEmpty(fitFileName))
+                    return;
+
+                string fileName = Path.GetFileNameWithoutExtension(fitFileName);
+
+                textBoxTcxFilename.Text = Path.Combine(@"C:\temp", fileName + ".tcx");
+
+            }
+            catch
+            {
+                // do nothing
+            }
         }
     }
 }

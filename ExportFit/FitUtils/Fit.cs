@@ -27,29 +27,30 @@ namespace FitUtils
 
             // Subscribe to message events of interest by connecting to the Broadcaster
             mesgBroadcaster.MesgEvent += new MesgEventHandler(OnMesg);
-            mesgBroadcaster.MesgDefinitionEvent += new MesgDefinitionEventHandler(OnMesgDefn);
+            //mesgBroadcaster.MesgDefinitionEvent += new MesgDefinitionEventHandler(OnMesgDefn);
 
-            mesgBroadcaster.FileIdMesgEvent += new MesgEventHandler(OnFileIDMesg);
-            mesgBroadcaster.UserProfileMesgEvent += new MesgEventHandler(OnUserProfileMesg);
+            //mesgBroadcaster.FileIdMesgEvent += new MesgEventHandler(OnFileIDMesg);
+            //mesgBroadcaster.UserProfileMesgEvent += new MesgEventHandler(OnUserProfileMesg);
 
-            mesgBroadcaster.SessionMesgEvent += new MesgEventHandler(OnSessionMesgEvent); 
-           
+            mesgBroadcaster.SessionMesgEvent += new MesgEventHandler(OnSessionMesgEvent);
+
             bool status = decodeDemo.IsFIT(fitSource);
             status &= decodeDemo.CheckIntegrity(fitSource);
             // Process the file
-                if (status == true)
-                {
-                    Console.WriteLine("Decoding...");
-                    try { decodeDemo.Read(fitSource); } catch {}
-                    Console.WriteLine("Decoded FIT file {0}", fitFile);
-                }
-                else
-                {
-                    Console.WriteLine("Integrity Check Failed {0}", fitFile);
-                    Console.WriteLine("Attempting to decode...");
-                    try { decodeDemo.Read(fitSource); }
-                    catch { }
-                }
+            if (status == true)
+            {
+                Console.WriteLine("Decoding...");
+                try { decodeDemo.Read(fitSource); }
+                catch { }
+                Console.WriteLine("Decoded FIT file {0}", fitFile);
+            }
+            else
+            {
+                Console.WriteLine("Integrity Check Failed {0}", fitFile);
+                Console.WriteLine("Attempting to decode...");
+                try { decodeDemo.Read(fitSource); }
+                catch { }
+            }
             fitSource.Close();
 
             return tcx;
@@ -73,11 +74,20 @@ namespace FitUtils
             {
                 tcx.DistanceMeters = (double)session.GetTotalDistance();
             }
+
+            tcx.AvgHeartRate = session.GetAvgHeartRate();
+
+            tcx.MaxHeartRate = session.GetMaxHeartRate();
+
         }
 
         static void OnMesg(object sender, MesgEventArgs e)
         {
             string activityType = e.mesg.Name;
+
+            if (activityType != "FileId" && activityType != "Record")
+                return;
+
             Console.WriteLine("OnMesg: Received Mesg with global ID#{0}, its name is {1}", e.mesg.Num, activityType);
 
             Trackpoint tp = new Trackpoint();
@@ -89,50 +99,55 @@ namespace FitUtils
                     string fieldValue = field.GetValue().ToString();
                     string fieldName = field.GetName().ToString();
                     string recordType = e.mesg.fields[i].Num.ToString();
-                    Console.WriteLine("\tField{0} Index{1} (\"{2}\" Field#{4}) Value: {3}", i, 0, fieldName, fieldValue, recordType);
-
+                    //Console.WriteLine("\tField{0} Index{1} (\"{2}\" Field#{4}) Value: {3}", i, 0, fieldName, fieldValue, recordType);
                     
-                    if (activityType == "FileId")
+                    switch (activityType)
                     {
-                        switch (fieldName)
-                        {
-                            case "TimeCreated":
-                                Dynastream.Fit.DateTime dt = new Dynastream.Fit.DateTime(uint.Parse(fieldValue));
-                                tcx.Id = Trackpoint.ConvertDate(dt.GetDateTime());
-                                tcx.StartTime = dt.GetDateTime();
-                                break;
-                            default:
-                                break;
-                        }
-                    }
+                        case "FileId":
 
-                    if (activityType == "Record")
-                    {
-                        switch (fieldName)
-                        {
-                            case "Timestamp":
-                                Dynastream.Fit.DateTime dt = new Dynastream.Fit.DateTime(uint.Parse(fieldValue));
-                                tp.Time = dt.GetDateTime();
-                                break;
-                            case "HeartRate":
-                                tp.HeartRateBpm = int.Parse(fieldValue);
-                                break;
-                            case "PositionLat":
-                                tp.LatitudeDegrees = double.Parse(fieldValue);
-                                break;
-                            case "PositionLong":
-                                tp.LongitudeDegrees = double.Parse(fieldValue);
-                                break;
-                            case "Altitude":
-                                tp.AltitudeMeters = 300;//double.Parse(fieldValue);
-                                break;
-                            default:
-                                break;
-                        }
-                    }
+                            switch (fieldName)
+                            {
+                                case "TimeCreated":
+                                    Dynastream.Fit.DateTime dt = new Dynastream.Fit.DateTime(uint.Parse(fieldValue));
+                                    tcx.Id = Trackpoint.ConvertDate(dt.GetDateTime());
+                                    tcx.StartTime = dt.GetDateTime();
+                                    break;
+                                default:
+                                    break;
+                            }
 
+                            break;
+
+                        case "Record":
+
+                            switch (fieldName)
+                            {
+                                case "Timestamp":
+                                    Dynastream.Fit.DateTime dt = new Dynastream.Fit.DateTime(uint.Parse(fieldValue));
+                                    tp.Time = dt.GetDateTime();
+                                    break;
+                                case "HeartRate":
+                                    tp.HeartRateBpm = int.Parse(fieldValue);
+                                    break;
+                                case "PositionLat":
+                                    tp.LatitudeDegrees = double.Parse(fieldValue);
+                                    break;
+                                case "PositionLong":
+                                    tp.LongitudeDegrees = double.Parse(fieldValue);
+                                    break;
+                                case "Altitude":
+                                    tp.AltitudeMeters = 300;//double.Parse(fieldValue);
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
-
             }
 
             if (activityType == "Record")
@@ -143,7 +158,7 @@ namespace FitUtils
 
         static void OnFileIDMesg(object sender, MesgEventArgs e)
         {
-            Console.WriteLine("FileIdHandler: Received {1} Mesg with global ID#{0}", e.mesg.Num, e.mesg.Name);
+            //Console.WriteLine("FileIdHandler: Received {1} Mesg with global ID#{0}", e.mesg.Num, e.mesg.Name);
             FileIdMesg myFileId = (FileIdMesg)e.mesg;
             try
             {

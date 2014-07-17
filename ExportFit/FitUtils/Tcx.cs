@@ -17,6 +17,8 @@ namespace FitUtils
         public int Calories = 0;
         
         public List<Trackpoint> TrackpointList = new List<Trackpoint>();
+        public byte? MaxHeartRate;
+        public byte? AvgHeartRate;
 
         public void Save(String Filename)
         {
@@ -27,12 +29,18 @@ namespace FitUtils
                 xTrack.Add(trackPoint.GetTrackpoint());
             }
 
+            XNamespace ns = "HeartRateInBeatsPerMinute_t";
+
             XElement xTcx = new XElement("Activities",
                 new XElement("Activity", new XAttribute("Sport", Sport),
                     new XElement("Id", Id),                   
                     new XElement("Lap", new XAttribute("StartTime", Trackpoint.ConvertDate(StartTime)),
                          new XElement("DistanceMeters", DistanceMeters),
                          new XElement("Calories", Calories),
+                         new XElement(ns + "AverageHeartRateBpm", 
+                             new XElement("Value", AvgHeartRate)),
+                         new XElement(ns + "MaximumHeartRateBpm",
+                             new XElement("Value", MaxHeartRate)),
                          new XElement("TotalTimeSeconds", TotalTimeSeconds),
                         xTrack)));
 
@@ -81,5 +89,6 @@ namespace FitUtils
                 Utils.SetPoint(TrackpointList[i - 1], TrackpointList[i], distPerPoint);
             }
         }
+
     }
 }
