@@ -46,6 +46,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxRouteType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxVirtualRoute.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +69,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(557, 289);
+            this.groupBox1.Size = new System.Drawing.Size(557, 320);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -87,13 +89,15 @@
             // 
             this.groupBoxVirtualRoute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxVirtualRoute.Controls.Add(this.comboBoxRouteType);
+            this.groupBoxVirtualRoute.Controls.Add(this.label4);
             this.groupBoxVirtualRoute.Controls.Add(this.textBoxLongitude);
             this.groupBoxVirtualRoute.Controls.Add(this.label3);
             this.groupBoxVirtualRoute.Controls.Add(this.textBoxLatitude);
             this.groupBoxVirtualRoute.Controls.Add(this.label2);
             this.groupBoxVirtualRoute.Location = new System.Drawing.Point(10, 189);
             this.groupBoxVirtualRoute.Name = "groupBoxVirtualRoute";
-            this.groupBoxVirtualRoute.Size = new System.Drawing.Size(529, 79);
+            this.groupBoxVirtualRoute.Size = new System.Drawing.Size(529, 121);
             this.groupBoxVirtualRoute.TabIndex = 14;
             this.groupBoxVirtualRoute.TabStop = false;
             this.groupBoxVirtualRoute.Text = "Starting Point (Degrees)";
@@ -101,7 +105,7 @@
             // textBoxLongitude
             // 
             this.textBoxLongitude.BackColor = System.Drawing.Color.LightYellow;
-            this.textBoxLongitude.Location = new System.Drawing.Point(232, 28);
+            this.textBoxLongitude.Location = new System.Drawing.Point(82, 70);
             this.textBoxLongitude.Name = "textBoxLongitude";
             this.textBoxLongitude.Size = new System.Drawing.Size(89, 20);
             this.textBoxLongitude.TabIndex = 17;
@@ -111,7 +115,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(172, 32);
+            this.label3.Location = new System.Drawing.Point(19, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 13);
             this.label3.TabIndex = 16;
@@ -120,7 +124,7 @@
             // textBoxLatitude
             // 
             this.textBoxLatitude.BackColor = System.Drawing.Color.LightYellow;
-            this.textBoxLatitude.Location = new System.Drawing.Point(70, 28);
+            this.textBoxLatitude.Location = new System.Drawing.Point(82, 32);
             this.textBoxLatitude.Name = "textBoxLatitude";
             this.textBoxLatitude.Size = new System.Drawing.Size(89, 20);
             this.textBoxLatitude.TabIndex = 15;
@@ -130,7 +134,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 32);
+            this.label2.Location = new System.Drawing.Point(19, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 14;
@@ -226,7 +230,7 @@
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Location = new System.Drawing.Point(495, 319);
+            this.buttonClose.Location = new System.Drawing.Point(495, 350);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 1;
@@ -238,7 +242,7 @@
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Location = new System.Drawing.Point(13, 319);
+            this.buttonSave.Location = new System.Drawing.Point(13, 350);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 2;
@@ -246,12 +250,36 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(192, 36);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Route Type:";
+            // 
+            // comboBoxRouteType
+            // 
+            this.comboBoxRouteType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxRouteType.BackColor = System.Drawing.Color.LightYellow;
+            this.comboBoxRouteType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRouteType.FormattingEnabled = true;
+            this.comboBoxRouteType.Items.AddRange(new object[] {
+            "Linear",
+            "ZigZag"});
+            this.comboBoxRouteType.Location = new System.Drawing.Point(284, 32);
+            this.comboBoxRouteType.Name = "comboBoxRouteType";
+            this.comboBoxRouteType.Size = new System.Drawing.Size(219, 21);
+            this.comboBoxRouteType.TabIndex = 19;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(593, 354);
+            this.ClientSize = new System.Drawing.Size(593, 385);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.groupBox1);
@@ -259,6 +287,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Export FIT to TCX";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBoxVirtualRoute.ResumeLayout(false);
@@ -286,6 +315,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxVirtualRoute;
         private System.Windows.Forms.CheckBox checkBoxDistance;
+        private System.Windows.Forms.ComboBox comboBoxRouteType;
+        private System.Windows.Forms.Label label4;
     }
 }
 

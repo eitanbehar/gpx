@@ -26,13 +26,13 @@ namespace FitUtils
             return units * ((double)180 / (Math.Pow((double)2, (double)31)));
         }
 
-        public static void SetPoint(Trackpoint tp1, Trackpoint tp2, double Distance)
+        public static void SetPoint(Trackpoint tp1, Trackpoint tp2, double Distance, double deltaLon, double deltaLat)
         {
             double dist = 0;
             do
             {
-                tp2.LongitudeDegrees -= 0.000001;
-                tp2.LatitudeDegrees += 0.000001;
+                tp2.LongitudeDegrees += deltaLat;
+                tp2.LatitudeDegrees += deltaLat;
                 dist = Utils.Distance(tp1, tp2);
             } while (dist < Distance);
         }

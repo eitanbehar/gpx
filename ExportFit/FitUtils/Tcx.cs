@@ -20,6 +20,10 @@ namespace FitUtils
         public byte? MaxHeartRate;
         public byte? AvgHeartRate;
 
+        public enum RouteType { Linear, ZigZag, Oval, Circle } ;
+
+        Random rnd = new Random();
+
         public void Save(String Filename)
         {
             XElement xTrack = new XElement("Track");
@@ -72,7 +76,7 @@ namespace FitUtils
             }
         }
 
-        public void CreateVirtualRoute(double InitialLatitude, double InitialLongitude)
+        public void CreateVirtualRoute(double InitialLatitude, double InitialLongitude, RouteType routeType)
         {
             int numberOfTrackPoints = TrackpointList.Count();
             
@@ -86,7 +90,20 @@ namespace FitUtils
             {
                 TrackpointList[i].LongitudeDegrees = TrackpointList[i - 1].LongitudeDegrees;
                 TrackpointList[i].LatitudeDegrees = TrackpointList[i - 1].LatitudeDegrees;
-                Utils.SetPoint(TrackpointList[i - 1], TrackpointList[i], distPerPoint);
+
+                int vectorLon = -1;
+                int vectorLat = 1;
+
+                if (routeType == RouteType.ZigZag)
+                {
+                    vectorLon = rnd.Next(0, 2) == 0 ? -1 : 1;
+                    //vectorLat = rnd.Next(0, 2) == 0 ? -1 : 1;
+                }
+
+                double deltaLon = vectorLon * 0.000001;
+                double deltaLat = vectorLat * 0.000001;
+
+                Utils.SetPoint(TrackpointList[i - 1], TrackpointList[i], distPerPoint, deltaLon, deltaLat);
             }
         }
 

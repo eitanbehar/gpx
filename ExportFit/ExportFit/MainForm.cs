@@ -63,7 +63,8 @@ namespace ExportFit
 
             if (checkBoxVirtualRoute.Checked)
             {
-                tcx.CreateVirtualRoute(double.Parse(textBoxLatitude.Text), double.Parse(textBoxLongitude.Text));
+                tcx.CreateVirtualRoute(double.Parse(textBoxLatitude.Text), double.Parse(textBoxLongitude.Text),
+                    (Tcx.RouteType)Enum.Parse(typeof(Tcx.RouteType), comboBoxRouteType.SelectedItem.ToString()));
             }
 
             tcx.Save(tcxFile);
@@ -110,6 +111,11 @@ namespace ExportFit
             {
                 // do nothing
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            comboBoxRouteType.SelectedIndex = 0;
         }
     }
 }

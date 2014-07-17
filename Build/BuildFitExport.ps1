@@ -6,7 +6,7 @@ $BaseFolder = 'c:\personal\gpx'
 
 $msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.EXE"
 
-$buildNumber = '13'
+$buildNumber = '14'
 
 $newExeVersion = '1.0.' + $buildNumber + '.0'
 $newExeVersionFolder = '1_0_' + $buildNumber + '_0'
@@ -24,7 +24,10 @@ Invoke-Expression "$msbuild $BaseFolder\ExportFit\ExportFit.sln /p:Configuration
 
 Invoke-Expression "$msbuild $BaseFolder\ExportFit\ExportFit\ExportFit.csproj /p:Configuration=Release /p:Platform=AnyCPU /t:publish /v:quiet /nologo"
 
-$credential = Get-Credential -UserName baconao -Message Username
+#$credential = Get-Credential -UserName baconao
+$username = 'baconao'
+$password = 'c42e2a73ebf0b9c76ebf744d759d1a2d8c2342c'
+$credential = New-Object PSCredential -ArgumentList @($username,(ConvertTo-SecureString -String $password -AsPlainText -Force))
 
 Write-Host "Deleting Previous Version"
 Invoke-RestMethod -Method Delete -Uri https://api.bintray.com/packages/baconao/tools/ExportFIT/versions/1.0.0.0 -Credential $credential
