@@ -6,7 +6,7 @@ $BaseFolder = 'c:\personal\gpx'
 
 $msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.EXE"
 
-$buildNumber = '14'
+$buildNumber = '15'
 
 $newExeVersion = '1.0.' + $buildNumber + '.0'
 $newExeVersionFolder = '1_0_' + $buildNumber + '_0'
@@ -26,7 +26,7 @@ Invoke-Expression "$msbuild $BaseFolder\ExportFit\ExportFit\ExportFit.csproj /p:
 
 #$credential = Get-Credential -UserName baconao
 $username = 'baconao'
-$password = 'c42e2a73ebf0b9c76ebf744d759d1a2d8c2342c'
+$password = 'c42e2a73ebf0b9c76ebf744d759d1a2d8c2342c7'
 $credential = New-Object PSCredential -ArgumentList @($username,(ConvertTo-SecureString -String $password -AsPlainText -Force))
 
 Write-Host "Deleting Previous Version"

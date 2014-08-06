@@ -69,6 +69,9 @@ namespace ExportFit
 
             tcx.Save(tcxFile);
 
+            Clipboard.Clear();
+            Clipboard.SetText(tcxFile);
+
             MessageBox.Show("Completed");
         }
 

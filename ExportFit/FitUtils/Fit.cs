@@ -10,10 +10,13 @@ namespace FitUtils
 {
     public static class Fit
     {
-        public static Tcx tcx = new Tcx();
+        public static Tcx tcx = null;
 
         public static Tcx ReadFitFileIntoTcxObject(string fitFile)
         {
+
+            tcx = new Tcx(); // initialize a new tcx object
+            
             // Attempt to open .FIT file
             FileStream fitSource = new FileStream(fitFile, FileMode.Open);
             Console.WriteLine("Opening {0}", fitFile);
