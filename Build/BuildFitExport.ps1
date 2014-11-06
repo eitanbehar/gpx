@@ -2,11 +2,12 @@
 
 Write-Host "Tool Build/Deployment Script"
 
-$BaseFolder = 'c:\personal\gpx'
+$scriptFolder = Split-Path $script:MyInvocation.MyCommand.Path 
+$BaseFolder = "$scriptFolder\..\"
 
 $msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.EXE"
 
-$buildNumber = '15'
+$buildNumber = '16'
 
 $newExeVersion = '1.0.' + $buildNumber + '.0'
 $newExeVersionFolder = '1_0_' + $buildNumber + '_0'
