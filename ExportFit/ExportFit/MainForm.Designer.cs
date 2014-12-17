@@ -32,6 +32,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBoxDistance = new System.Windows.Forms.CheckBox();
             this.groupBoxVirtualRoute = new System.Windows.Forms.GroupBox();
+            this.comboBoxRouteType = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.textBoxLongitude = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxLatitude = new System.Windows.Forms.TextBox();
@@ -46,8 +48,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxRouteType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxVirtualRoute.SuspendLayout();
             this.SuspendLayout();
@@ -101,6 +101,33 @@
             this.groupBoxVirtualRoute.TabIndex = 14;
             this.groupBoxVirtualRoute.TabStop = false;
             this.groupBoxVirtualRoute.Text = "Starting Point (Degrees)";
+            // 
+            // comboBoxRouteType
+            // 
+            this.comboBoxRouteType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxRouteType.BackColor = System.Drawing.Color.LightYellow;
+            this.comboBoxRouteType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRouteType.FormattingEnabled = true;
+            this.comboBoxRouteType.Items.AddRange(new object[] {
+            "North",
+            "South",
+            "East",
+            "West"});
+            this.comboBoxRouteType.Location = new System.Drawing.Point(284, 32);
+            this.comboBoxRouteType.Name = "comboBoxRouteType";
+            this.comboBoxRouteType.Size = new System.Drawing.Size(219, 21);
+            this.comboBoxRouteType.TabIndex = 19;
+            this.comboBoxRouteType.SelectedIndexChanged += new System.EventHandler(this.comboBoxRouteType_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(192, 36);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Route Type:";
             // 
             // textBoxLongitude
             // 
@@ -249,30 +276,6 @@
             this.buttonSave.Text = "Export";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(192, 36);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Route Type:";
-            // 
-            // comboBoxRouteType
-            // 
-            this.comboBoxRouteType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxRouteType.BackColor = System.Drawing.Color.LightYellow;
-            this.comboBoxRouteType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxRouteType.FormattingEnabled = true;
-            this.comboBoxRouteType.Items.AddRange(new object[] {
-            "Linear",
-            "ZigZag"});
-            this.comboBoxRouteType.Location = new System.Drawing.Point(284, 32);
-            this.comboBoxRouteType.Name = "comboBoxRouteType";
-            this.comboBoxRouteType.Size = new System.Drawing.Size(219, 21);
-            this.comboBoxRouteType.TabIndex = 19;
             // 
             // MainForm
             // 

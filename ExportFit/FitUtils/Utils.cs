@@ -31,7 +31,7 @@ namespace FitUtils
             double dist = 0;
             do
             {
-                tp2.LongitudeDegrees += deltaLat;
+                tp2.LongitudeDegrees += deltaLon;
                 tp2.LatitudeDegrees += deltaLat;
                 dist = Utils.Distance(tp1, tp2);
             } while (dist < Distance);
