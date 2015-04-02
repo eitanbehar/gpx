@@ -11,16 +11,16 @@ namespace FitUtils
     {
         public string Sport = String.Empty;
         public string Id = String.Empty;
-        public DateTime StartTime ;
+        public DateTime StartTime;
         public double DistanceMeters = 0;
         public double TotalTimeSeconds = 0;
         public int Calories = 0;
-        
-        public List<Trackpoint> TrackpointList = new List<Trackpoint>();
-        public byte? MaxHeartRate;
-        public byte? AvgHeartRate;
 
-        public enum RouteType { Linear, ZigZag, Oval, Circle } ;
+        public List<Trackpoint> TrackpointList = new List<Trackpoint>();
+        public int MaxHeartRate;
+        public int AvgHeartRate;
+
+        public enum RouteType { North, South, East, West } ;
 
         Random rnd = new Random();
 
@@ -37,11 +37,11 @@ namespace FitUtils
 
             XElement xTcx = new XElement("Activities",
                 new XElement("Activity", new XAttribute("Sport", Sport),
-                    new XElement("Id", Id),                   
+                    new XElement("Id", Id),
                     new XElement("Lap", new XAttribute("StartTime", Trackpoint.ConvertDate(StartTime)),
                          new XElement("DistanceMeters", DistanceMeters),
                          new XElement("Calories", Calories),
-                         new XElement(ns + "AverageHeartRateBpm", 
+                         new XElement(ns + "AverageHeartRateBpm",
                              new XElement("Value", AvgHeartRate)),
                          new XElement(ns + "MaximumHeartRateBpm",
                              new XElement("Value", MaxHeartRate)),
@@ -52,11 +52,30 @@ namespace FitUtils
 
         }
 
+        public void FixHeartRate()
+        {
+            int maxHR = 0;
+            int cumHR = 0;
+            foreach (var point in TrackpointList)
+            {
+                cumHR += point.HeartRateBpm;
+                maxHR = point.HeartRateBpm > maxHR ? point.HeartRateBpm : maxHR;
+            }
+
+            AvgHeartRate = cumHR / TrackpointList.Count();
+            MaxHeartRate = maxHR;
+        }
 
         public void AdjustPoints()
         {
-            int numberOfTrackPoints = TrackpointList.Count();
             
+            int numberOfTrackPoints = TrackpointList.Count();
+
+            if (numberOfTrackPoints > 0)
+            {
+                StartTime = TrackpointList[0].Time;
+            }
+
             TotalTimeSeconds = (TrackpointList[numberOfTrackPoints - 1].Time - TrackpointList[0].Time).TotalSeconds;
 
 
@@ -79,7 +98,7 @@ namespace FitUtils
         public void CreateVirtualRoute(double InitialLatitude, double InitialLongitude, RouteType routeType)
         {
             int numberOfTrackPoints = TrackpointList.Count();
-            
+
             // set starting point
             TrackpointList[0].LatitudeDegrees = InitialLatitude;
             TrackpointList[0].LongitudeDegrees = InitialLongitude;
@@ -91,13 +110,27 @@ namespace FitUtils
                 TrackpointList[i].LongitudeDegrees = TrackpointList[i - 1].LongitudeDegrees;
                 TrackpointList[i].LatitudeDegrees = TrackpointList[i - 1].LatitudeDegrees;
 
-                int vectorLon = -1;
+                int vectorLon = 1; 
                 int vectorLat = 1;
-
-                if (routeType == RouteType.ZigZag)
+                
+                switch (routeType)
                 {
-                    vectorLon = rnd.Next(0, 2) == 0 ? -1 : 1;
-                    //vectorLat = rnd.Next(0, 2) == 0 ? -1 : 1;
+                    case RouteType.East:
+                        vectorLon = 1;
+                        vectorLat = 1;
+                        break;
+                    case RouteType.West:
+                        vectorLon = -1;
+                        vectorLat = -1;
+                        break;
+                    case RouteType.North:
+                        vectorLon = -1;
+                        vectorLat = 1;
+                        break;
+                    case RouteType.South:
+                        vectorLon = 1;
+                        vectorLat = -1;
+                        break;
                 }
 
                 double deltaLon = vectorLon * 0.000001;

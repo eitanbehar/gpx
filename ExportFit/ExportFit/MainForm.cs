@@ -59,6 +59,9 @@ namespace ExportFit
                 tcx.DistanceMeters = double.Parse(textBoxDistance.Text);
             }
 
+
+            tcx.FixHeartRate();
+
             tcx.AdjustPoints();
 
             if (checkBoxVirtualRoute.Checked)
@@ -107,7 +110,7 @@ namespace ExportFit
 
                 string fileName = Path.GetFileNameWithoutExtension(fitFileName);
 
-                textBoxTcxFilename.Text = Path.Combine(@"C:\temp", fileName + ".tcx");
+                textBoxTcxFilename.Text = Path.Combine(@"C:\temp", fileName + "_" + comboBoxRouteType.Text  + ".tcx");
 
             }
             catch
@@ -120,5 +123,14 @@ namespace ExportFit
         {
             comboBoxRouteType.SelectedIndex = 0;
         }
+
+        
+        private void comboBoxRouteType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxTcxFilename.Text = String.Empty;
+            textBoxFitFilename_TextChanged(sender, e);
+        }
+
+        
     }
 }

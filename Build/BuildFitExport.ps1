@@ -7,7 +7,7 @@ $BaseFolder = "$scriptFolder\..\"
 
 $msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.EXE"
 
-$buildNumber = '16'
+$buildNumber = '19'
 
 $newExeVersion = '1.0.' + $buildNumber + '.0'
 $newExeVersionFolder = '1_0_' + $buildNumber + '_0'

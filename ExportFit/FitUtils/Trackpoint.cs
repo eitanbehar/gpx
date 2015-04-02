@@ -32,6 +32,9 @@ namespace FitUtils
                             new XElement("LongitudeDegrees", LongitudeDegrees)
                             ),
                         new XElement("AltitudeMeters", AltitudeMeters),
+                        new XElement("Distance", Distance),
+                        new XElement("Speed", Speed),
+                        new XElement("Cadence", Cadence),
                         new XElement("HeartRateBpm", 
                             new XElement("Value", HeartRateBpm))
                 );
@@ -39,6 +42,18 @@ namespace FitUtils
             return xTp;
         }
 
+
+        public double Distance { get; set; }
+
+        public double Power { get; set; }
+
+        public double Grade { get; set; }
+
+        public double Speed { get; set; }
+
+        public double Resistance { get; set; }
+
+        public double Cadence { get; set; }
     }
 
    
