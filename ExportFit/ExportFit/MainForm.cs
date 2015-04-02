@@ -59,6 +59,9 @@ namespace ExportFit
                 tcx.DistanceMeters = double.Parse(textBoxDistance.Text);
             }
 
+
+            tcx.FixHeartRate();
+
             tcx.AdjustPoints();
 
             if (checkBoxVirtualRoute.Checked)

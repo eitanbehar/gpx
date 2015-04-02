@@ -17,8 +17,8 @@ namespace FitUtils
         public int Calories = 0;
 
         public List<Trackpoint> TrackpointList = new List<Trackpoint>();
-        public byte? MaxHeartRate;
-        public byte? AvgHeartRate;
+        public int MaxHeartRate;
+        public int AvgHeartRate;
 
         public enum RouteType { North, South, East, West } ;
 
@@ -52,10 +52,29 @@ namespace FitUtils
 
         }
 
+        public void FixHeartRate()
+        {
+            int maxHR = 0;
+            int cumHR = 0;
+            foreach (var point in TrackpointList)
+            {
+                cumHR += point.HeartRateBpm;
+                maxHR = point.HeartRateBpm > maxHR ? point.HeartRateBpm : maxHR;
+            }
+
+            AvgHeartRate = cumHR / TrackpointList.Count();
+            MaxHeartRate = maxHR;
+        }
 
         public void AdjustPoints()
         {
+            
             int numberOfTrackPoints = TrackpointList.Count();
+
+            if (numberOfTrackPoints > 0)
+            {
+                StartTime = TrackpointList[0].Time;
+            }
 
             TotalTimeSeconds = (TrackpointList[numberOfTrackPoints - 1].Time - TrackpointList[0].Time).TotalSeconds;
 

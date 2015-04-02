@@ -78,9 +78,9 @@ namespace FitUtils
                 tcx.DistanceMeters = (double)session.GetTotalDistance();
             }
 
-            tcx.AvgHeartRate = session.GetAvgHeartRate();
+            tcx.AvgHeartRate = int.Parse(session.GetAvgHeartRate().ToString());
 
-            tcx.MaxHeartRate = session.GetMaxHeartRate();
+            tcx.MaxHeartRate = int.Parse(session.GetMaxHeartRate().ToString());
 
         }
 
@@ -131,6 +131,8 @@ namespace FitUtils
                                     break;
                                 case "HeartRate":
                                     tp.HeartRateBpm = int.Parse(fieldValue);
+                                    if (tp.HeartRateBpm > 220) 
+                                        tp.HeartRateBpm = 0;
                                     break;
                                 case "PositionLat":
                                     tp.LatitudeDegrees = double.Parse(fieldValue);
@@ -139,7 +141,27 @@ namespace FitUtils
                                     tp.LongitudeDegrees = double.Parse(fieldValue);
                                     break;
                                 case "Altitude":
-                                    tp.AltitudeMeters = 300;//double.Parse(fieldValue);
+                                    tp.AltitudeMeters = double.Parse(fieldValue);
+                                    if (tp.AltitudeMeters > 12000) tp.AltitudeMeters = 0;
+                                    break;
+                                case "Distance":
+                                    tp.Distance = double.Parse(fieldValue);
+                                    break;
+                                //case "Power":
+                                //    tp.Power = double.Parse(fieldValue);
+                                //    break;
+                                //case "Grade":
+                                //    tp.Grade = double.Parse(fieldValue);
+                                //    break;
+                                case "Speed":
+                                    tp.Speed = double.Parse(fieldValue);
+                                    break;
+                                //case "Resistance":
+                                //    tp.Resistance = double.Parse(fieldValue);
+                                //    break;
+                                case "Cadence":
+                                    tp.Cadence = double.Parse(fieldValue);
+                                    if (tp.Cadence > 250) tp.Cadence = 0;
                                     break;
                                 default:
                                     break;
