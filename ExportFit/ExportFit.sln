@@ -1,7 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Express 2012 for Windows Desktop
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportFit", "ExportFit\ExportFit.csproj", "{11DB1B04-7C59-4260-8727-BEF5D7555399}"
+	ProjectSection(ProjectDependencies) = postProject
+		{96C8DA3F-060D-42CD-8293-49DC45FAD423} = {96C8DA3F-060D-42CD-8293-49DC45FAD423}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitUtils", "FitUtils\FitUtils.csproj", "{96C8DA3F-060D-42CD-8293-49DC45FAD423}"
 EndProject

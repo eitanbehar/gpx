@@ -48,6 +48,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.checkBoxUseDistance = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxVirtualRoute.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +58,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.checkBoxUseDistance);
             this.groupBox1.Controls.Add(this.checkBoxDistance);
             this.groupBox1.Controls.Add(this.groupBoxVirtualRoute);
             this.groupBox1.Controls.Add(this.checkBoxVirtualRoute);
@@ -277,6 +279,18 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // checkBoxUseDistance
+            // 
+            this.checkBoxUseDistance.AutoSize = true;
+            this.checkBoxUseDistance.Checked = true;
+            this.checkBoxUseDistance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxUseDistance.Location = new System.Drawing.Point(167, 151);
+            this.checkBoxUseDistance.Name = "checkBoxUseDistance";
+            this.checkBoxUseDistance.Size = new System.Drawing.Size(133, 17);
+            this.checkBoxUseDistance.TabIndex = 16;
+            this.checkBoxUseDistance.Text = "Use Tracked Distance";
+            this.checkBoxUseDistance.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,6 +334,7 @@
         private System.Windows.Forms.CheckBox checkBoxDistance;
         private System.Windows.Forms.ComboBox comboBoxRouteType;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBoxUseDistance;
     }
 }
 

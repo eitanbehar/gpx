@@ -95,7 +95,7 @@ namespace FitUtils
             }
         }
 
-        public void CreateVirtualRoute(double InitialLatitude, double InitialLongitude, RouteType routeType)
+        public void CreateVirtualRoute(double InitialLatitude, double InitialLongitude, RouteType routeType, bool UseTrackDistance)
         {
             int numberOfTrackPoints = TrackpointList.Count();
 
@@ -136,7 +136,7 @@ namespace FitUtils
                 double deltaLon = vectorLon * 0.000001;
                 double deltaLat = vectorLat * 0.000001;
 
-                Utils.SetPoint(TrackpointList[i - 1], TrackpointList[i], distPerPoint, deltaLon, deltaLat);
+                Utils.SetPoint(TrackpointList[i - 1], TrackpointList[i], UseTrackDistance ? TrackpointList[i].Distance : distPerPoint, deltaLon, deltaLat);
             }
         }
 

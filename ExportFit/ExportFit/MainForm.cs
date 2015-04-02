@@ -67,7 +67,7 @@ namespace ExportFit
             if (checkBoxVirtualRoute.Checked)
             {
                 tcx.CreateVirtualRoute(double.Parse(textBoxLatitude.Text), double.Parse(textBoxLongitude.Text),
-                    (Tcx.RouteType)Enum.Parse(typeof(Tcx.RouteType), comboBoxRouteType.SelectedItem.ToString()));
+                    (Tcx.RouteType)Enum.Parse(typeof(Tcx.RouteType), comboBoxRouteType.SelectedItem.ToString()), checkBoxUseDistance.Checked);
             }
 
             tcx.Save(tcxFile);
