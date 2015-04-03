@@ -136,7 +136,11 @@ namespace FitUtils
                 double deltaLon = vectorLon * 0.000001;
                 double deltaLat = vectorLat * 0.000001;
 
-                Utils.SetPoint(TrackpointList[i - 1], TrackpointList[i], UseTrackDistance ? TrackpointList[i].Distance : distPerPoint, deltaLon, deltaLat);
+                if(UseTrackDistance)
+                {
+                    distPerPoint =(double) ((TrackpointList[i].Distance - TrackpointList[i-1].Distance) / 1000);
+                }
+                Utils.SetPoint(TrackpointList[i - 1], TrackpointList[i], distPerPoint, deltaLon, deltaLat);
             }
         }
 

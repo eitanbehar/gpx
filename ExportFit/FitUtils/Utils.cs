@@ -28,6 +28,13 @@ namespace FitUtils
 
         public static void SetPoint(Trackpoint tp1, Trackpoint tp2, double Distance, double deltaLon, double deltaLat)
         {
+            if (Distance <= 0)
+            {
+                tp2.LongitudeDegrees = tp1.LongitudeDegrees;
+                tp2.LatitudeDegrees = tp1.LatitudeDegrees;
+                return;
+            }
+            
             double dist = 0;
             do
             {

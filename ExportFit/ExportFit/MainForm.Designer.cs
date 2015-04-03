@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxUseDistance = new System.Windows.Forms.CheckBox();
             this.checkBoxDistance = new System.Windows.Forms.CheckBox();
             this.groupBoxVirtualRoute = new System.Windows.Forms.GroupBox();
             this.comboBoxRouteType = new System.Windows.Forms.ComboBox();
@@ -48,7 +49,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.checkBoxUseDistance = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxVirtualRoute.SuspendLayout();
             this.SuspendLayout();
@@ -75,11 +75,21 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // checkBoxUseDistance
+            // 
+            this.checkBoxUseDistance.AutoSize = true;
+            this.checkBoxUseDistance.Checked = true;
+            this.checkBoxUseDistance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxUseDistance.Location = new System.Drawing.Point(167, 151);
+            this.checkBoxUseDistance.Name = "checkBoxUseDistance";
+            this.checkBoxUseDistance.Size = new System.Drawing.Size(133, 17);
+            this.checkBoxUseDistance.TabIndex = 16;
+            this.checkBoxUseDistance.Text = "Use Tracked Distance";
+            this.checkBoxUseDistance.UseVisualStyleBackColor = true;
+            // 
             // checkBoxDistance
             // 
             this.checkBoxDistance.AutoSize = true;
-            this.checkBoxDistance.Checked = true;
-            this.checkBoxDistance.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxDistance.Location = new System.Drawing.Point(10, 108);
             this.checkBoxDistance.Name = "checkBoxDistance";
             this.checkBoxDistance.Size = new System.Drawing.Size(104, 17);
@@ -278,18 +288,6 @@
             this.buttonSave.Text = "Export";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // checkBoxUseDistance
-            // 
-            this.checkBoxUseDistance.AutoSize = true;
-            this.checkBoxUseDistance.Checked = true;
-            this.checkBoxUseDistance.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxUseDistance.Location = new System.Drawing.Point(167, 151);
-            this.checkBoxUseDistance.Name = "checkBoxUseDistance";
-            this.checkBoxUseDistance.Size = new System.Drawing.Size(133, 17);
-            this.checkBoxUseDistance.TabIndex = 16;
-            this.checkBoxUseDistance.Text = "Use Tracked Distance";
-            this.checkBoxUseDistance.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
