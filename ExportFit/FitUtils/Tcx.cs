@@ -68,7 +68,7 @@ namespace FitUtils
 
         public void AdjustPoints()
         {
-            
+
             int numberOfTrackPoints = TrackpointList.Count();
 
             if (numberOfTrackPoints > 0)
@@ -110,9 +110,9 @@ namespace FitUtils
                 TrackpointList[i].LongitudeDegrees = TrackpointList[i - 1].LongitudeDegrees;
                 TrackpointList[i].LatitudeDegrees = TrackpointList[i - 1].LatitudeDegrees;
 
-                int vectorLon = 1; 
+                int vectorLon = 1;
                 int vectorLat = 1;
-                
+
                 switch (routeType)
                 {
                     case RouteType.East:
@@ -136,9 +136,9 @@ namespace FitUtils
                 double deltaLon = vectorLon * 0.000001;
                 double deltaLat = vectorLat * 0.000001;
 
-                if(UseTrackDistance)
+                if (UseTrackDistance)
                 {
-                    distPerPoint =(double) ((TrackpointList[i].Distance - TrackpointList[i-1].Distance) / 1000);
+                    distPerPoint = (double)((TrackpointList[i].Distance - TrackpointList[i - 1].Distance) / 1000);
                 }
                 Utils.SetPoint(TrackpointList[i - 1], TrackpointList[i], distPerPoint, deltaLon, deltaLat);
             }

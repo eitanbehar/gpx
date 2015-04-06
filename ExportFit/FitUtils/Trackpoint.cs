@@ -21,6 +21,12 @@ namespace FitUtils
         public double LongitudeDegrees ;
         public double AltitudeMeters;
         public int HeartRateBpm;
+        public double Distance;
+        public double Power;
+        public double Grade;
+        public double Speed;
+        public double Resistance;
+        public double Cadence;
 
         public XElement GetTrackpoint()
         {
@@ -43,17 +49,7 @@ namespace FitUtils
         }
 
 
-        public double Distance { get; set; }
-
-        public double Power { get; set; }
-
-        public double Grade { get; set; }
-
-        public double Speed { get; set; }
-
-        public double Resistance { get; set; }
-
-        public double Cadence { get; set; }
+        
     }
 
    
